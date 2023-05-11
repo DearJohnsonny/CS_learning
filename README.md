@@ -10,6 +10,7 @@ Python是一门面向对象的编程语言，面向对象是一种代码封装�
 * init函数（方法）支持带参数的类的初始化 ，也可为声明该类的属性
 * init函数（方法）的第一个参数必须是 self（self为习惯用法，也可以用别的名字），后续参数则可以自由指定，和定义函数没有任何区别。
 ## Class 类
+第一个例子
 ```
 class File:
     def __init__(self):
@@ -19,4 +20,19 @@ class File:
 my_file = File()
 print(my_file.name)
 print(my_file.create_time)
+```
+第二个例子
+```
+
+class Box:
+    def setDimension(self, width, height, depth):
+        self.width = width
+        self.height = height
+        self.depth = depth
+ 
+    def getVolume(self):
+        return self.width * self.height * self.depth
+ 
+b = Box()
+b.setDimension(10, 20, 30)
 ```
