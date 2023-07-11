@@ -20,6 +20,12 @@
 
 从而实现对计算机之间的联通。
 
+#### IP地址
+
+<div align=center>
+<img src="https://github.com/DearJohnsonny/CS_learning/assets/111955215/82165cef-e049-4292-95b7-eec3912b4d67" width="1500">
+</div>
+
 ### 关于云服务器
 云服务器就是把物理服务器（俗称“母鸡”），用虚拟机技术虚拟出多台主机（俗称“小鸡”）。
 #### 什么是虚拟机？
