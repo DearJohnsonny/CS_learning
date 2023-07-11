@@ -155,3 +155,333 @@ class Box:
 b = Box()
 b.setDimension(10, 20, 30)
 ```
+
+## Linux_learning
+常见的版本有Ubuntu Fedora Debian等，做该笔记时采用版本为Ubuntu
+
+<a href="https://www.cnblogs.com/LXP-Never/p/11607551.html#blogTitle11">关于装机器和计算机基本知识</a>
+
+<a href="https://zhuanlan.zhihu.com/p/380119935">关于网络分层和协议</a>
+
+部分内容引自网络博客，仅做学习笔记使用
+### 数据处理
+#### 正则表达式
+
+<div align=center>
+<img src="https://github.com/DearJohnsonny/Linux_learning/assets/111955215/57d62c2e-71b2-4fa5-8256-a50a8479ecb4" width="800">
+</div>
+
+下图为例子：
+
+<div align=center>
+<img src="https://github.com/DearJohnsonny/Linux_learning/assets/111955215/b8174005-d6d7-4a4e-b155-0c5ba5cc3dc9" width="800">
+</div>
+
+还有个比较常用的用法是锚定首行，尤其在我们做核酸序列的这里常用，下图为例子：
+
+<div align=center>
+<img src="https://github.com/DearJohnsonny/Linux_learning/assets/111955215/af92fede-cb66-4404-b8da-110ea1f469d5" width="800">
+</div>
+
+#### grep命令
+
+<a href="https://cloud.tencent.com/developer/article/1554542">关于grep命令</a>
+
+<a href="https://www.cnblogs.com/flyor/p/6411140.html">关于grep命令，这篇更好</a>
+
+```
+grep "ATC[AT]" test.txt # []括号用于匹配一组字符中的任何一个。 [1-3]表示连续的数字都可以
+
+grep "^ATC" test.txt # 结合正则表达是进行查找
+
+grep "TGC$" test.txt # 同上
+
+grep "Class [^1-2]" Students.txt # 带方括号的脱字符号用于从搜索模式中排除字符。
+
+```
+#### awk命令
+<a href="https://blog.csdn.net/Dark_Tk/article/details/114844529">CSDN的关于awk命令的博客，针不戳</a>
+
+一些有意思的操作_通过管道、双引号调用 Shell 命令：
+
+<div align=center>
+<img src="https://github.com/DearJohnsonny/Linux_learning/assets/111955215/6fac9b79-7519-45bf-a3a6-2bc86bbb886d" width="1200">
+</div>
+
+常规操作：
+```
+awk '/^root/{print}' /etc/passwd		#输出以 root 开头的行
+
+awk '/nologin$/{print}' /etc/passwd		#输出以 nologin 结尾的行
+
+awk '(NR%2)==1{print}' name.txt 		#输出所有奇数行的内容
+
+awk '(NR%2)==0{print}' name.txt		    #输出所有偶数行的内容
+
+awk 'NR==1,NR==3 {print}' name.txt	    #输出第 1~3 行内容
+
+awk 'NR==1;NR==3 {print}' name.txt	    #输出第 1和第3 行内容
+
+awk '(NR>=1)&&(NR<=3) {print}' name.txt	#输出第 1~3 行内容
+
+```
+#### sed命令
+
+<a href="https://www.cnblogs.com/zakun/p/linux-cmd-sed.html">非常全面的关于sed命令的博客</a>
+
+##### 替换操作
+```
+sed 's/STR1/STR2/' test.txt ## 常规的sed操作，可以在真正替换前尝试一下;s是不能少的
+
+sed 's/STR1/STR2/g' test.txt ## 可以将所有符合条件的字段全部替换了，而上文只能替换第一个匹配字段
+
+sed -i 's/STR1/STR2' test.txt ## 带有 -i表示真正在修改txt文件，不带只是替换之后查看一下
+
+sed -n 's/STR1/STR2/p' test.txt ## 将替换了字段的行单独摘出来
+```
+
+##### 删除操作
+```
+sed '2d' test.txt ## 删除第二行
+
+sed '/^$/d' test.txt ## 删除空白行
+
+sed '/^ATCG/d' test.txt ## 删除开头是ATCG的行
+
+sed '/AGAGGTC$/d' test.txt ## 删除结尾是AGAGGTC的行
+```
+### 关于环境配置的理解
+其实主要也就是/etc/profile和/home/john/.bashrc的理解
+
+<a href="https://blog.csdn.net/u011262253/article/details/86083351">这是一个总结，下面也会多次提到</a>
+
+#### /home/john/.bashrc的理解
+下文也有提到:
+```
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+```
+起一个enable color和add handy aliases的作用
+
+#### /etc/profile的理解
+<a href="https://www.cnblogs.com/lh03061238/p/9952659.html">见此帖</a>
+* 常在/etc/profile文件中修改环境变量，在这里修改的内容是对所有用户起作用的。以下主要操作将在该文件中进行。
+* 使用修改.bashrc文件（在用户的家目录下）进行环境变量的编辑，只对当前用户有用。使用修改 /etc/profile 文件进行环境变量的编辑，是对所有用户有用。一定要注意区别。
+* Linux profile文件在系统启动时将被运行。用户可以在里面加入其他命令，但是一定要加正确，不然的话系统会启动不起来的。
+
+### 一些其他的理解
+#### 关于常见的转义字符，要加echo -e
+<a href="http://c.biancheng.net/linux/echo.html">见此帖</a>
+
+echo的中文是回声的意思，在Linux中用于打印
+
+转义字符，是 Shell 中的一些具有特殊功能的字符，比如 \n 表示换行、\t 表示制表符等。转义字符统一由反斜线“\”开头，后跟一个或几个字符，这样就赋予了字符“神奇的能力”。
+
+在 echo 中，要使用转义字符，需要使用-e选项，并使用双引号将转义字符括起来。
+
+此外，printf 命令也可以用来输出，它的使用方法类似于 C 中的 printf() 函数。
+
+#### linux中的.d是什么意思
+linux中“.d”文件表示的是：1、依赖文件，其中d是dependence的意思；2、默认配置文件，其中d是default的意思；3、动态意义的文件，其中d是Dynamic的意思。
+
+<a href="https://www.php.cn/linux-490277.html#:~:text=linux%E4%B8%AD%E2%80%9C.d%E2%80%9D%E6%96%87%E4%BB%B6%E8%A1%A8%E7%A4%BA%E7%9A%84%E6%98%AF%EF%BC%9A1%E3%80%81%E4%BE%9D%E8%B5%96%E6%96%87%E4%BB%B6%EF%BC%8C%E5%85%B6%E4%B8%ADd%E6%98%AFdependence%E7%9A%84%E6%84%8F%E6%80%9D%EF%BC%9B2%E3%80%81%E9%BB%98%E8%AE%A4%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%EF%BC%8C%E5%85%B6%E4%B8%ADd%E6%98%AFdefault%E7%9A%84%E6%84%8F%E6%80%9D%EF%BC%9B3%E3%80%81%E5%8A%A8%E6%80%81%E6%84%8F%E4%B9%89%E7%9A%84%E6%96%87%E4%BB%B6%EF%BC%8C%E5%85%B6%E4%B8%ADd%E6%98%AFDynamic%E7%9A%84%E6%84%8F%E6%80%9D%E3%80%82,%E6%9C%AC%E6%95%99%E7%A8%8B%E6%93%8D%E4%BD%9C%E7%8E%AF%E5%A2%83%EF%BC%9Alinux7.3%E7%B3%BB%E7%BB%9F%E3%80%81Dell%20G3%E7%94%B5%E8%84%91%E3%80%82">见此帖</a>
+
+借助下面的代码帮助理解
+```
+if [ -d /etc/profile.d ]; then              # 判断/etc/profile.d 是不是一个目录。所以profile.d是搭配profile使用的
+  for i in /etc/profile.d/*.sh; do       #如果是一个目录，到该目录下，取出每一个shell程序
+    if [ -r $i ]; then                             #如果该shell可以执行
+
+      . $i                                               # 则执行它
+    fi
+  done
+  unset i
+fi
+```
+
+#### /etc/passwd的理解
+<a href="https://blog.csdn.net/xiaopang1122/article/details/105095684#:~:text=Linux%20%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%20%2Fetc%2Fpasswd%20%E6%96%87%E4%BB%B6%EF%BC%8C%E6%98%AF%E7%B3%BB%E7%BB%9F%E7%94%A8%E6%88%B7%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%EF%BC%8C%E5%AD%98%E5%82%A8%E4%BA%86%E7%B3%BB%E7%BB%9F%E4%B8%AD%E6%89%80%E6%9C%89%E7%94%A8%E6%88%B7%E7%9A%84%E5%9F%BA%E6%9C%AC%E4%BF%A1%E6%81%AF%EF%BC%8C%E5%B9%B6%E4%B8%94%E6%89%80%E6%9C%89%E7%94%A8%E6%88%B7%E9%83%BD%E5%8F%AF%E4%BB%A5%E5%AF%B9%E6%AD%A4%E6%96%87%E4%BB%B6%E6%89%A7%E8%A1%8C%E8%AF%BB%E6%93%8D%E4%BD%9C%E3%80%82%20%E5%90%8C,%2Fetc%2Fpasswd%20%E6%96%87%E4%BB%B6%E4%B8%80%E6%A0%B7%EF%BC%8C%E6%96%87%E4%BB%B6%E4%B8%AD%E6%AF%8F%E8%A1%8C%E4%BB%A3%E8%A1%A8%E4%B8%80%E4%B8%AA%E7%94%A8%E6%88%B7%EF%BC%8C%E5%90%8C%E6%A0%B7%E4%BD%BF%E7%94%A8%20%22%3A%22%20%E4%BD%9C%E4%B8%BA%E5%88%86%E9%9A%94%E7%AC%A6%EF%BC%8C%E4%B8%8D%E5%90%8C%E4%B9%8B%E5%A4%84%E5%9C%A8%E4%BA%8E%EF%BC%8C%E6%AF%8F%E8%A1%8C%E7%94%A8%E6%88%B7%E4%BF%A1%E6%81%AF%E8%A2%AB%E5%88%92%E5%88%86%E4%B8%BA%209%20%E4%B8%AA%E5%AD%97%E6%AE%B5%E3%80%82">见此帖</a>
+
+Linux 系统中的 /etc/passwd 文件，是系统用户配置文件，存储了系统中所有用户的基本信息，并且所有用户都可以对此文件执行读操作。
+执行函数后，可以得到以下输出:
+```
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+systemd-network:x:100:102:systemd Network Management,,,:/run/systemd:/usr/sbin/nologin
+systemd-resolve:x:101:103:systemd Resolver,,,:/run/systemd:/usr/sbin/nologin
+messagebus:x:102:105::/nonexistent:/usr/sbin/nologin
+systemd-timesync:x:103:106:systemd Time Synchronization,,,:/run/systemd:/usr/sbin/nologin
+syslog:x:104:111::/home/syslog:/usr/sbin/nologin
+_apt:x:105:65534::/nonexistent:/usr/sbin/nologin
+uuidd:x:106:112::/run/uuidd:/usr/sbin/nologin
+tcpdump:x:107:113::/nonexistent:/usr/sbin/nologin
+john:x:1000:1000:,,,:/home/john:/bin/bash
+```
+其分别代表的意义是（共九个字段）:用户名；加密密码；最后一次修改时间；最小修改时间间隔；密码有效期；密码需要变更前的警告天数；密码过期后的宽限时间；账号失效时间；保留字段
+
+/etc/passwd应该与passwd命令区别开，这个是改用户密码的，我也不会退出，输错密码就行
+
+#### 美元符号$的理解
+
+<a href="https://blog.csdn.net/lenchio/article/details/8233256#:~:text=linux%E8%84%9A%E4%B8%AD%E7%BB%8F%E5%B8%B8%E4%BC%9A%E9%81%87%E5%88%B0%E7%BE%8E%E5%85%83%E7%AC%A6%E5%8F%B7%20%28%24%29%EF%BC%8C%E4%BB%A5%E4%B8%8B%E6%98%AF%E4%BB%96%E4%BB%AC%E4%BB%A3%E8%A1%A8%E7%9A%84%E5%90%AB%E4%B9%89%EF%BC%9A%20%240%20shell%E7%9A%84%E5%91%BD%E4%BB%A4%E6%9C%AC%E8%BA%AB,%28%E5%8C%85%E6%8B%AC%E5%AE%8C%E6%95%B4%E8%B7%AF%E5%BE%84%29%20%241%E5%88%B0%249%20%E6%95%B0%E5%AD%97%E8%A1%A8%E7%A4%BAshell%20%E7%9A%84%E7%AC%AC%E5%87%A0%E4%B8%AA%E5%8F%82%E6%95%B0">见此帖</a>
+
+### 基本操作
+
+<a href="https://www.cnblogs.com/savorboard/p/bash-guide.html#g.-mv">其实这个帖子写得很好，看它就够</a>
+
+#### bash的操作
+
+<div align=center>
+<img src="https://user-images.githubusercontent.com/111955215/235345738-5e7d4a35-e28b-45b2-91a9-05ee80bbb89e.png" width="800">
+</div>
+
+许多 Bash 脚本会在文件首行加上 #!/bin/bash 。这里 #! 符号的名称是 shebang（也叫 sha-bang，即 sharp # 与 bang !）。当一个文本文件首行有 shebang，且以可执行模式执行时，shebang 后的内容会看作这个脚本的解释器和相关参数，系统会执行解释器命令，并将脚本文件的路径作为参数传递给该命令。
+
+例如，某个foo.sh 首行为 #!/bin/bash，则执行./foo.sh 就等于执行 /bin/bash./foo.sh。
+```
+touch hello.sh
+
+vim hello.sh
+
+#!/bin/bash
+I=John
+She=dudu
+echo "$I love $She"
+```
+
+#### touch的操作
+touch是Linux常用的一条基本命令，它有如下两个功能：
+
+（1）是用于把已存在文件的时间标签更新为系统当前的时间（默认方式），它们的数据将原封不动地保留下来；
+
+（2）是用来创建新的空文件。
+
+<a href="https://blog.csdn.net/JIEJINQUANIL/article/details/100941369#:~:text=touch%E6%98%AFLinux%E5%B8%B8%E7%94%A8%E7%9A%84%E4%B8%80%E6%9D%A1%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4%EF%BC%8C%E5%AE%83%E6%9C%89%E5%A6%82%E4%B8%8B%E4%B8%A4%E4%B8%AA%E5%8A%9F%E8%83%BD%EF%BC%9A,%EF%BC%881%EF%BC%89%E6%98%AF%E7%94%A8%E4%BA%8E%E6%8A%8A%E5%B7%B2%E5%AD%98%E5%9C%A8%E6%96%87%E4%BB%B6%E7%9A%84%E6%97%B6%E9%97%B4%E6%A0%87%E7%AD%BE%E6%9B%B4%E6%96%B0%E4%B8%BA%E7%B3%BB%E7%BB%9F%E5%BD%93%E5%89%8D%E7%9A%84%E6%97%B6%E9%97%B4%EF%BC%88%E9%BB%98%E8%AE%A4%E6%96%B9%E5%BC%8F%EF%BC%89%EF%BC%8C%E5%AE%83%E4%BB%AC%E7%9A%84%E6%95%B0%E6%8D%AE%E5%B0%86%E5%8E%9F%E5%B0%81%E4%B8%8D%E5%8A%A8%E5%9C%B0%E4%BF%9D%E7%95%99%E4%B8%8B%E6%9D%A5%EF%BC%9B%20%EF%BC%882%EF%BC%89%E6%98%AF%E7%94%A8%E6%9D%A5%E5%88%9B%E5%BB%BA%E6%96%B0%E7%9A%84%E7%A9%BA%E6%96%87%E4%BB%B6%E3%80%82">具体见此帖子</a>
+
+#### vim的操作
+* 进入输入模式:单击””键进入输入模式，这时可以对文件进行插入、删除等操作。单击“Esc"回到命令模式
+* 进入末行模式:单击”:"键进入末行模式。该模式下可以保存刚刚编辑的内容，具体操作是单击w”；单击"q"可退出vim；q!是强制退出
+* 
+#### 一些快捷键
+ctrl + p :逐渐向前搜索历史记录
+
+ctrl + n :向后搜索历史记录
+
+ctrl + r :直接按关键词搜索历史记录
+
+ctrl + l :刷屏到最上面
+
+ctrl + u :清除指针前面的所有内容
+
+
+<div align=center>
+<img src="https://user-images.githubusercontent.com/111955215/235349392-7baa3d61-331b-41e9-b076-b5f17bca0804.png" width="1500">
+</div>
+
+#### 一些常用操作
+* 查看配制的环境:
+```
+echo $PATH
+```
+* 打开jupyter，输入:
+```
+jupyter-notebook
+```
+点进最下面的链接
+编辑完后，回到linux界面，ctrl + c，y退出
+
+* 输入多Line文本，可以：
+```
+cat > name.txt << EOF
+this is the first line
+this is the 2nd line
+this is the 3rd line
+this is the 4th line
+EOF
+```
+* 如果想去除重复行显示某多行文本，可以:
+```
+sort filename.txt | uniq -c
+```
+uniq去重复，但是只对连续行有用，所以需要和sort一起连用；而-c可以显示某行总共重复次数
+
+* 用tree显示文件夹子目录格局，小文件夹会一直跑，一般会:
+```
+tree -L 3|less
+```
+3表示显示子树的层级，
+也可以直接ls -l
+我们加入了la = ls -al的操作，直接la即可
+
+* 在wsl中搜索windows系统的内容的操作：
+```
+cd /home/john/mnt
+cd c
+cd d
+```
+* 换用户的操作
+```
+sudo su root
+```
+上面的sudo表示权限，而su表示更换用户，root是管理员权限
+输入上述命令后发现颜色变为灰白色
+再输入
+```
+source /home/john/.bashrc
+```
+就能发现命令行由白色上色了（因为bash中定义了color = auto，cat /home/john/.bashrc后可以看到下面的内容）
+
+```
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+```
+
+<div align=center>
+<img src="https://user-images.githubusercontent.com/111955215/235342547-49149740-f24c-4856-8235-4cc29aa29693.png" width="800">
+</div>
+
+#### 要编写alias定义长期的函数
+可以输入
+```
+vim /home/john/.bashrc_aliases
+```
+然后在vim模式下按  ':',再编辑（如下）
+```
+alias py39='conda activate py39'
+alias pyb='conda activate base'
+alias la='ls -al --color=auto'
+```
