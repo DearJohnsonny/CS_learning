@@ -30,13 +30,13 @@
 <img src="https://github.com/DearJohnsonny/CS_learning/assets/111955215/20f79e23-0aa9-44b7-b82a-51c28659f872" width="400">
 </div>
 
-从上图可以看出来，北医的校园网是B类IP地址，因此前两位是网络层。而下图的PC机遇cellphone分发的IP地址虽然不同，但是前两位的数字是一样的，说明了是位于同一个子网下面的。
+从上图可以看出来，北医的校园网是B类IP地址，因此前两位是网络层。而下图的PC机遇cellphone分发的IP地址虽然不同，但是把IP地址与子网掩码相与，发现是一样的，说明了是位于同一个子网下面的。
 
 <div align=center>
 <img src="https://github.com/DearJohnsonny/CS_learning/assets/111955215/4f3a01cf-e90b-47e4-aa6c-ebc4a98ce97d" width="800">
 </div>
 
-而在cmd中输入ipconfig之后发现WSL这个虚拟机的地址与真正的校园网的地址不同，是C类IP地址，但是最终的子网掩码是一样的，证明还是在同一个IP地址下面。
+而在cmd中输入ipconfig之后发现WSL这个虚拟机的地址与真正的校园网的地址不同，是C类IP地址，但是把IP地址与子网掩码相与，发现是一样的，证明还是在同一个IP地址下面。
 
 <div align=center>
 <img src="https://github.com/DearJohnsonny/CS_learning/assets/111955215/44f94716-d8a7-44fd-a930-499befac7e1a" width="800">
