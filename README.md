@@ -1,5 +1,10 @@
 ## Bacis computer knowledge
 
+<a href="https://zhuanlan.zhihu.com/p/468515490">window的cmd命令行基本操作</a>
+
+<a href="https://iknow.lenovo.com.cn/robot/knowledge/id/134435">windows10的快捷键操作</a>
+
+### 关于环境变量
 <a href="https://blog.csdn.net/jrl12345/article/details/106661324">CSDN的关于环境变量的理解</a>
 
 环境变量是在操作系统中一个具有特定名字的对象，它包含了一个或者多个应用程序所将使用到的信息。当要求系统运行一个程序而没有告诉它程序所在的完整路径时，系统除了在当前目录下面寻找此程序外，还应到path中指定的路径去找。用户通过设置环境变量，来更好的运行进程。
