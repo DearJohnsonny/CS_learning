@@ -9,7 +9,7 @@
 当我们说几层协议时，一般来说：一台设备上的第X层与另一台设备上的第X层进行通信的规则就是第X层协议。
 
 <div align=center>
-<img src="https://github.com/DearJohnsonny/CS_learning/assets/111955215/0af3f013-eea5-4419-b6b5-cff14cf95695" width="1000">
+<img src="https://github.com/DearJohnsonny/CS_learning/assets/111955215/0af3f013-eea5-4419-b6b5-cff14cf95695" width="600">
 </div>
 
 <a href="https://zhuanlan.zhihu.com/p/380119935">全文可以看知乎上对于网络分层的介绍</a>
