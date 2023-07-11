@@ -24,6 +24,10 @@ C:\Matlab\matlab_profiles\bin\matlab.exe
 
 但是如果添加了环境变量，则在命令行中输入application.exe可以直接打开该程序
 
+**为什么有的软件需要配置环境变量，有的软件就不需要？**
+通常我们使用的软件（应用程序），比如QQ，微信，英雄联盟等都是一个应用程序（houzhui为.exe）,不需要配置环境变量
+而当我们安装jdk，android sdk，python等应用程序时，我们是通过eclipse，myeclipse，idea，pycharm等另一个应用程序（ide）使用它们，所以要配置环境变量Path，让系统知道它们在哪里，以便咱们使用ide时可以调用它们
+
 ## Python_learning
 ### 一些理解
 #### 关于创建类时的__init__方法
