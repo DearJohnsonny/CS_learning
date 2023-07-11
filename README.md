@@ -38,6 +38,11 @@
 
 而在cmd中输入ipconfig之后发现WSL这个虚拟机的地址与真正的校园网的地址不同，是C类IP地址，但是最终的子网掩码是一样的，证明还是在同一个IP地址下面。
 
+<div align=center>
+<img src="https://github.com/DearJohnsonny/CS_learning/assets/111955215/44f94716-d8a7-44fd-a930-499befac7e1a" width="800">
+</div>
+
+
 ### 关于云服务器
 云服务器就是把物理服务器（俗称“母鸡”），用虚拟机技术虚拟出多台主机（俗称“小鸡”）。
 #### 什么是虚拟机？
