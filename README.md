@@ -42,6 +42,7 @@
 <img src="https://github.com/DearJohnsonny/CS_learning/assets/111955215/44f94716-d8a7-44fd-a930-499befac7e1a" width="800">
 </div>
 
+<a href="https://zhuanlan.zhihu.com/p/434989401">关于IP地址和子网掩码</a>
 
 ### 关于云服务器
 云服务器就是把物理服务器（俗称“母鸡”），用虚拟机技术虚拟出多台主机（俗称“小鸡”）。
