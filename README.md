@@ -12,6 +12,8 @@
 <img src="https://github.com/DearJohnsonny/CS_learning/assets/111955215/0af3f013-eea5-4419-b6b5-cff14cf95695" width="1000">
 </div>
 
+<a href="https://zhuanlan.zhihu.com/p/380119935">全文可以看知乎上对于网络分层的介绍</a>
+
 ### 关于云服务器
 云服务器就是把物理服务器（俗称“母鸡”），用虚拟机技术虚拟出多台主机（俗称“小鸡”）。
 #### 什么是虚拟机？
