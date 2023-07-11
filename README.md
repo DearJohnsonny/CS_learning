@@ -27,7 +27,7 @@
 </div>
 
 <div align=center>
-<img src="https://github.com/DearJohnsonny/CS_learning/assets/111955215/20f79e23-0aa9-44b7-b82a-51c28659f872" width="800">
+<img src="https://github.com/DearJohnsonny/CS_learning/assets/111955215/20f79e23-0aa9-44b7-b82a-51c28659f872" width="400">
 </div>
 
 从上图可以看出来，北医的校园网是B类IP地址，因此前两位是网络层。而下图的PC机遇cellphone分发的IP地址虽然不同，但是前两位的数字是一样的，说明了是位于同一个子网下面的。
