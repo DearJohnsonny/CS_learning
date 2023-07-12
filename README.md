@@ -54,6 +54,8 @@ DNS服务器根据域名的层级，进行分级查询。
 <img src="https://github.com/DearJohnsonny/CS_learning/assets/111955215/3b784b5a-9af2-4bf9-9303-1f7cb9860b06" width="1500">
 </div>
 
+DNS污染的常规表现：WX QQ可以用，但是浏览器打不开，flushdns即可
+
 #### 域名的层级
 **顶级域名/一级域名：**
 * .COM商业性的机构或公司
