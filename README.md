@@ -72,6 +72,12 @@ DNS服务器根据域名的层级，进行分级查询。
 
 而https://www.baidu.com是一个网址
 
+**有时候不加www.访问不了网站**
+
+一般来说，www子域名是主域名的一个别名，www子域名cname指向主域名。如果域名的持有者没有设置www子域名的cname记录，www就会解析失败。
+
+如果www子域名的dns记录，是A记录指向某个ip地址，而主域名记录未设置，则只能通过www访问。
+
 ### IP地址
 
 <a href="https://cloud.tencent.com/developer/article/2165741">腾讯云上关于私有和公有IP地址的介绍博客</a>
