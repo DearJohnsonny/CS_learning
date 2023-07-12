@@ -28,6 +28,29 @@
 
 局域网中的私网地址不可重复，但是不同局域网中可以存在相同的IP地址，比如我家可以用192.168.1.1的网段，而我的公司也可以用192.168.1.1网段
 
+### DNS
+DNS （Domain Name System 的缩写）的作用非常简单，就是根据域名查出IP地址。你可以把它想象成一本巨大的电话本。
+
+举例来说，如果你要访问域名math.stackexchange.com，首先要通过DNS查出它的IP地址是151.101.129.69。
+
+#### 域名的层级
+**顶级域名/一级域名：**
+* .COM商业性的机构或公司
+* .ORG非盈利的组织、团体
+* .GOV政府部门
+* .MIL军事部门
+* .NET从事Internet相关的网络服务的机构或公司
+**二级域名：**
+* baidu.com
+* bilibili.com
+* weibo.com
+**三级域名**
+* www.baidu.com
+* www.weibo.com
+* www.liqinzhanglab.com
+
+而https://www.baidu.com是一个网址
+
 ### IP地址
 
 <a href="https://cloud.tencent.com/developer/article/2165741">腾讯云上关于私有和公有IP地址的介绍博客</a>
