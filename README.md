@@ -30,6 +30,8 @@
 
 ### IP地址
 
+<a href="https://cloud.tencent.com/developer/article/2165741">腾讯云上关于私有和公有IP地址的介绍博客</a>
+
 #### 公有IP地址
 简单来说，公网IP地址是可以通过 Internet 直接访问的 IP 地址，不同的公共 IPv4 地址的数量是有限的，它们通常由 Internet 服务提供商 (ISP) 分配给设备。
 
