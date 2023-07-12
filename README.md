@@ -34,7 +34,7 @@ DNS （Domain Name System 的缩写）的作用非常简单，就是根据域名
 举例来说，如果你要访问域名math.stackexchange.com，首先要通过DNS查出它的IP地址是151.101.129.69。
 
 <div align=center>
-<img src="https://github.com/DearJohnsonny/CS_learning/assets/111955215/8a355180-48bc-492e-92f3-9e6d205cae0e" width="1500">
+<img src="https://github.com/DearJohnsonny/CS_learning/assets/111955215/8a355180-48bc-492e-92f3-9e6d205cae0e" width="400">
 </div>
 
 #### DNS如何查询的呢？
